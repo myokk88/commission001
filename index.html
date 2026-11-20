@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -13,10 +12,10 @@
       --text: #22201e;
       --muted: #6b665f;
       --line: #e6e1d8;
-      --accent: #355e52;
-      --accent-dark: #26463d;
-      --accent-bg: #e7f0ed;
-      --ok: #1e6b4b;
+      --accent: #003c64;
+      --accent-dark: #002844;
+      --accent-bg: #e3eff7;
+      --ok: #003c64;
       --closed-bg: #fff3dc;
       --closed-text: #8a5300;
       --radius: 16px;
@@ -47,15 +46,11 @@
       padding: 20px;
     }
 
-    /* 頂部 Banner + 簡介 */
-    .hero {
-      padding: 0;
-      overflow: hidden;
-    }
+    .hero { padding: 0; overflow: hidden; }
 
     .banner {
       height: 140px;
-      background: linear-gradient(120deg, #dce8e3 0%, #efe6d8 55%, #e3ddd3 100%);
+      background: linear-gradient(120deg, #d7e7f2 0%, #efe6d8 55%, #e3ddd3 100%);
       padding: 16px 20px;
       display: flex;
       justify-content: flex-end;
@@ -70,37 +65,15 @@
       border-radius: 999px;
       font-size: 0.82rem;
       font-weight: 700;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--accent);
     }
 
-    .status.closed {
-      color: var(--closed-text);
-      background: var(--closed-bg);
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .hero-body {
-      padding: 18px 22px 22px;
-    }
-
-    .hero-body h1 {
-      margin: 0;
-      font-size: 1.35rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-body p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
+    .status.closed { color: var(--closed-text); background: var(--closed-bg); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    .hero-body { padding: 18px 22px 22px; }
+    .hero-body h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.02em; }
+    .hero-body p { margin: 8px 0 0; color: var(--muted); font-size: 0.93rem; }
 
     .sec-head {
       display: flex;
@@ -111,18 +84,9 @@
       margin-bottom: 12px;
     }
 
-    .sec-title {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 700;
-    }
+    .sec-title { margin: 0; font-size: 1rem; font-weight: 700; }
+    .sec-hint { font-size: 0.82rem; color: var(--muted); }
 
-    .sec-hint {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    /* 委託項目多選卡片 */
     .plans {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -140,49 +104,15 @@
     }
 
     .plan-card:hover { border-color: var(--accent); }
+    .plan-card.selected { background: var(--accent-bg); border-color: var(--accent); }
+    .plan-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .plan-name { font-weight: 700; font-size: 0.95rem; }
+    .plan-price { color: var(--accent); font-weight: 700; font-size: 0.88rem; margin: 4px 0 6px; }
+    .plan-desc { margin: 0; font-size: 0.84rem; color: var(--muted); }
 
-    .plan-card.selected {
-      background: var(--accent-bg);
-      border-color: var(--accent);
-    }
+    input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; }
 
-    .plan-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .plan-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .plan-price {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.88rem;
-      margin: 4px 0 6px;
-    }
-
-    .plan-desc {
-      margin: 0;
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
-
-    input[type="checkbox"] {
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    /* 附加選項 */
-    .addons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
+    .addons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 
     .chip {
       display: inline-flex;
@@ -216,28 +146,11 @@
       font-size: 0.88rem;
     }
 
-    .err {
-      color: #b42318;
-      font-size: 0.84rem;
-      margin-top: 8px;
-      display: none;
-    }
+    .err { color: #b42318; font-size: 0.84rem; margin-top: 8px; display: none; }
 
-    /* 表單 */
     form { display: grid; gap: 12px; }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    label.lbl {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    label.lbl { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
 
     input[type="text"], textarea {
       width: 100%;
@@ -251,7 +164,6 @@
     }
 
     textarea { min-height: 92px; resize: vertical; }
-
     .btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
     button {
@@ -265,6 +177,7 @@
 
     .btn-main { background: var(--accent); color: #fff; }
     .btn-main:hover { background: var(--accent-dark); }
+    .btn-main:disabled { opacity: 0.6; cursor: not-allowed; }
     .btn-sub { background: var(--soft); color: var(--text); }
 
     .result {
@@ -288,6 +201,8 @@
       color: var(--ok);
     }
 
+    .result-top.fail { color: #b42318; }
+
     pre {
       margin: 0;
       padding: 12px;
@@ -300,21 +215,9 @@
       font-size: 0.88rem;
     }
 
-    .rules {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
+    .rules { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
     .rules li + li { margin-top: 6px; }
-
-    .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
     .link-pill {
       display: inline-block;
@@ -328,11 +231,21 @@
     }
 
     .link-pill:hover { background: var(--accent-bg); color: var(--accent); }
+
+    a.mail-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a.mail-link:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- 1. 主視覺與簡介區塊 -->
     <section class="box hero">
       <div class="banner">
         <div id="statusBadge" class="status">
@@ -346,7 +259,6 @@
       </div>
     </section>
 
-    <!-- 2. 多選委託項目與需求表單 -->
     <section class="box">
       <div class="sec-head">
         <h2 class="sec-title">委託項目（可複選）</h2>
@@ -387,21 +299,21 @@
         </div>
 
         <div class="btns">
-          <button type="submit" class="btn-main">產生委託摘要</button>
+          <button type="submit" class="btn-main" id="submitBtn">送出委託至信箱</button>
           <button type="button" class="btn-sub" id="clearBtn">清空重選</button>
         </div>
       </form>
 
       <div id="resultBox" class="result">
-        <div class="result-top">
+        <div class="result-top" id="resultHeader">
           <span id="copyMsg">已產生委託摘要</span>
           <button type="button" class="btn-sub" id="copyBtn">複製文字</button>
         </div>
         <pre id="outText"></pre>
+        <a id="mailtoFallback" class="mail-link" href="mailto:">若未自動寄出，點此開啟預設信箱寄出 →</a>
       </div>
     </section>
 
-    <!-- 3. 委託須知與外部連結 -->
     <section class="box">
       <h2 class="sec-title" style="margin-bottom:10px;">委託須知與聯繫管道</h2>
       <ul id="rulesList" class="rules"></ul>
@@ -411,29 +323,37 @@
 
   <script>
     const CONFIG = {
+      // ★ 改成你的收件信箱（Gmail）
+      receiverEmail: "your-email@gmail.com",
+
       title: "委託企劃＆接案說明頁",
-      intro: "歡迎先看下方委託項目與須知，可直接勾選多個項目並產生需求摘要。",
+      intro: "歡迎先看下方委託項目與須知，可直接勾選多個項目並送出委託需求。",
       isOpen: true,
       openText: "開放委託中",
       closedText: "暫停接單（可先留單）",
+
       plans: [
-        { id: "p1", name: "單項設計 / 排版", priceLabel: "NT$ 1,200 起", priceNum: 1200, desc: "單張視覺、海報、社群圖卡或簡報美化。" },
-        { id: "p2", name: "文案撰寫 / 潤稿", priceLabel: "NT$ 800 起", priceNum: 800, desc: "活動介紹、商品說明、文章潤飾與結構整理。" },
-        { id: "p3", name: "多項組合 / 專案協助", priceLabel: "依需求報價", priceNum: 0, desc: "同時包含設計、整理或企劃的複合型委託。" }
+        { id: "p1", name: "A｜正比大頭", priceLabel: "NT$ 500 起", priceNum: 500, desc: "及肩大頭創作，可修改1次" },
+        { id: "p2", name: "B｜正比塗鴉", priceLabel: "NT$ 800 起", priceNum: 800, desc: "可能多少溢色/雜線，會畫到腰，雙人金額*2，簡單色塊背景。不做修改" },
+        { id: "p3", name: "C｜正比精稿", priceLabel: "NT$ 1200 起，依需求報價", priceNum: 1200, desc: "會畫比較久，有背景，可修改2次" }
       ],
+
+      // 加購項目（rate 為加上方勾選品項總價的百分比，四捨五入取整數；0 為不加百分比）
       addons: [
-        { id: "a1", name: "急件", priceNum: 0 },
-        { id: "a2", name: "商用用途", priceNum: 500 },
-        { id: "a3", name: "原始檔", priceNum: 300 }
+        { id: "a1", name: "急件", rate: 40 },
+        { id: "a2", name: "印刷品(無料only)", rate: 25 },
+        { id: "a3", name: "不公開展示", rate: 15 },
+        { id: "a4", name: "修改一次", rate: 10 }
       ],
+
       rules: [
         "確認需求與交期後提供正式報價，依確認順序安排排程。",
         "修改次數與交付格式將於報價階段共同確認。",
-        "送出摘要後可複製貼到常用通訊軟體或寄信聯繫。"
+        "送出後會寄送至我的信箱，亦可複製摘要或透過信箱聯繫。"
       ],
       links: [
         { label: "作品集 / 社群", url: "https://example.com" },
-        { label: "寄信聯繫", url: "mailto:your-email@example.com" }
+        { label: "寄信聯繫", url: "mailto:your-email@gmail.com" }
       ]
     };
 
@@ -474,116 +394,5 @@
       CONFIG.addons.forEach((a) => {
         const chip = document.createElement("label");
         chip.className = "chip";
-        const tag = a.priceNum > 0 ? ` (+NT$ ${a.priceNum})` : "";
-        chip.innerHTML = `<input type="checkbox" /><span>${esc(a.name)}${tag}</span>`;
-        const cb = chip.querySelector("input");
-        cb.addEventListener("change", () => toggleItem(chosenAddons, a.id, chip, cb.checked));
-        addonsWrap.appendChild(chip);
-      });
-    }
-
-    const rulesList = document.getElementById("rulesList");
-    CONFIG.rules.forEach((r) => {
-      const li = document.createElement("li");
-      li.textContent = r;
-      rulesList.appendChild(li);
-    });
-
-    const socialLinks = document.getElementById("socialLinks");
-    CONFIG.links.forEach((l) => {
-      const a = document.createElement("a");
-      a.className = "link-pill";
-      a.href = l.url;
-      a.textContent = l.label;
-      if (!l.url.startsWith("mailto:")) {
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-      }
-      socialLinks.appendChild(a);
-    });
-
-    function toggleItem(set, id, el, checked) {
-      checked ? set.add(id) : set.delete(id);
-      el.classList.toggle("selected", checked);
-      document.getElementById("selectErr").style.display = "none";
-      refreshBar();
-    }
-
-    function refreshBar() {
-      const pList = CONFIG.plans.filter((p) => chosenPlans.has(p.id));
-      const aList = CONFIG.addons.filter((a) => chosenAddons.has(a.id));
-      document.getElementById("countNum").textContent = pList.length;
-      const preview = document.getElementById("pricePreview");
-      if (!pList.length) {
-        preview.textContent = "尚未選擇項目";
-        return;
-      }
-      const sum = pList.reduce((s, x) => s + x.priceNum, 0) + aList.reduce((s, x) => s + x.priceNum, 0);
-      const custom = pList.some((x) => x.priceNum === 0);
-      preview.textContent = sum > 0
-        ? `預估起價：NT$ ${sum.toLocaleString()} 起${custom ? "（含另行報價項）" : ""}`
-        : "預估費用：依所選項目另行報價";
-    }
-
-    const form = document.getElementById("reqForm");
-    const resultBox = document.getElementById("resultBox");
-    const outText = document.getElementById("outText");
-    const copyMsg = document.getElementById("copyMsg");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      if (!chosenPlans.size) {
-        document.getElementById("selectErr").style.display = "block";
-        return;
-      }
-      const pLines = CONFIG.plans.filter((p) => chosenPlans.has(p.id)).map((p) => `・${p.name}（${p.priceLabel}）`);
-      const aNames = CONFIG.addons.filter((a) => chosenAddons.has(a.id)).map((a) => a.name);
-      const who = document.getElementById("who").value.trim();
-      const when = document.getElementById("when").value.trim() || "未填寫";
-      const money = document.getElementById("money").value.trim() || "未填寫";
-      const note = document.getElementById("note").value.trim();
-
-      outText.textContent = [
-        "【委託需求單】",
-        `聯絡人／方式：${who}`,
-        `委託項目（共 ${pLines.length} 項）：`,
-        ...pLines,
-        `附加需求：${aNames.length ? aNames.join("、") : "無"}`,
-        `期望交期：${when}`,
-        `預算範圍：${money}`,
-        `需求說明：\n${note}`
-      ].join("\n");
-
-      resultBox.classList.add("show");
-      copyMsg.textContent = "已產生委託摘要";
-    });
-
-    document.getElementById("copyBtn").addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(outText.textContent);
-        copyMsg.textContent = "已複製到剪貼簿！";
-      } catch {
-        copyMsg.textContent = "請手動選取上方文字複製。";
-      }
-    });
-
-    document.getElementById("clearBtn").addEventListener("click", () => {
-      form.reset();
-      chosenPlans.clear();
-      chosenAddons.clear();
-      document.querySelectorAll(".plan-card, .chip").forEach((el) => {
-        el.classList.remove("selected");
-        const cb = el.querySelector("input");
-        if (cb) cb.checked = false;
-      });
-      document.getElementById("selectErr").style.display = "none";
-      resultBox.classList.remove("show");
-      refreshBar();
-    });
-
-    function esc(s) {
-      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    }
-  </script>
-</body>
-</html>
+        chip.dataset.addonId = a.id;
+        const rateLabel = a.rate > 0
