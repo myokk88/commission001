@@ -1,1 +1,589 @@
 
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>委託資訊與需求表</title>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --card: #ffffff;
+      --soft: #f2efe9;
+      --text: #22201e;
+      --muted: #6b665f;
+      --line: #e6e1d8;
+      --accent: #355e52;
+      --accent-dark: #26463d;
+      --accent-bg: #e7f0ed;
+      --ok: #1e6b4b;
+      --closed-bg: #fff3dc;
+      --closed-text: #8a5300;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+
+    .box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    /* 頂部 Banner + 簡介 */
+    .hero {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .banner {
+      height: 140px;
+      background: linear-gradient(120deg, #dce8e3 0%, #efe6d8 55%, #e3ddd3 100%);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--accent);
+    }
+
+    .status.closed {
+      color: var(--closed-text);
+      background: var(--closed-bg);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .hero-body {
+      padding: 18px 22px 22px;
+    }
+
+    .hero-body h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-body p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .sec-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .sec-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* 委託項目多選卡片 */
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .plan-card {
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      background: var(--bg);
+      cursor: pointer;
+      transition: 0.15s ease;
+      user-select: none;
+    }
+
+    .plan-card:hover { border-color: var(--accent); }
+
+    .plan-card.selected {
+      background: var(--accent-bg);
+      border-color: var(--accent);
+    }
+
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .plan-price {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin: 4px 0 6px;
+    }
+
+    .plan-desc {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    input[type="checkbox"] {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* 附加選項 */
+    .addons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      font-size: 0.84rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .chip.selected {
+      background: var(--accent-bg);
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .summary-bar {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: var(--soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.88rem;
+    }
+
+    .err {
+      color: #b42318;
+      font-size: 0.84rem;
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* 表單 */
+    form { display: grid; gap: 12px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    label.lbl {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea { min-height: 92px; resize: vertical; }
+
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-main { background: var(--accent); color: #fff; }
+    .btn-main:hover { background: var(--accent-dark); }
+    .btn-sub { background: var(--soft); color: var(--text); }
+
+    .result {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: var(--soft);
+      display: none;
+    }
+
+    .result.show { display: block; }
+
+    .result-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--ok);
+    }
+
+    pre {
+      margin: 0;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+
+    .rules {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .rules li + li { margin-top: 6px; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .link-pill {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .link-pill:hover { background: var(--accent-bg); color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- 1. 主視覺與簡介區塊 -->
+    <section class="box hero">
+      <div class="banner">
+        <div id="statusBadge" class="status">
+          <span class="dot"></span>
+          <span id="statusText"></span>
+        </div>
+      </div>
+      <div class="hero-body">
+        <h1 id="siteTitle"></h1>
+        <p id="siteIntro"></p>
+      </div>
+    </section>
+
+    <!-- 2. 多選委託項目與需求表單 -->
+    <section class="box">
+      <div class="sec-head">
+        <h2 class="sec-title">委託項目（可複選）</h2>
+        <span class="sec-hint">點選卡片可勾選多個項目</span>
+      </div>
+      <div id="plansGrid" class="plans"></div>
+      <div id="selectErr" class="err">請至少勾選一項委託項目。</div>
+
+      <div id="addonsWrap" class="addons"></div>
+
+      <div class="summary-bar">
+        <span>已勾選：<strong id="countNum">0</strong> 項</span>
+        <span id="pricePreview">尚未選擇項目</span>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--line);margin:18px 0;" />
+
+      <form id="reqForm">
+        <div class="grid-2">
+          <div>
+            <label class="lbl" for="who">稱呼 / 聯絡方式 *</label>
+            <input id="who" type="text" required placeholder="例如：阿明（IG / X @xxx 或信箱）" />
+          </div>
+          <div>
+            <label class="lbl" for="when">期望交期</label>
+            <input id="when" type="text" placeholder="例如：2026/12 底前 / 不急" />
+          </div>
+        </div>
+
+        <div>
+          <label class="lbl" for="money">預算範圍（選填）</label>
+          <input id="money" type="text" placeholder="例如：NT$ 2,000 - 4,000 或可討論" />
+        </div>
+
+        <div>
+          <label class="lbl" for="note">需求內容與參考方向 *</label>
+          <textarea id="note" required placeholder="請寫出各項目用途、風格偏好、參考連結或注意事項..."></textarea>
+        </div>
+
+        <div class="btns">
+          <button type="submit" class="btn-main">產生委託摘要</button>
+          <button type="button" class="btn-sub" id="clearBtn">清空重選</button>
+        </div>
+      </form>
+
+      <div id="resultBox" class="result">
+        <div class="result-top">
+          <span id="copyMsg">已產生委託摘要</span>
+          <button type="button" class="btn-sub" id="copyBtn">複製文字</button>
+        </div>
+        <pre id="outText"></pre>
+      </div>
+    </section>
+
+    <!-- 3. 委託須知與外部連結 -->
+    <section class="box">
+      <h2 class="sec-title" style="margin-bottom:10px;">委託須知與聯繫管道</h2>
+      <ul id="rulesList" class="rules"></ul>
+      <div id="socialLinks" class="links"></div>
+    </section>
+  </div>
+
+  <script>
+    const CONFIG = {
+      title: "委託企劃＆接案說明頁",
+      intro: "歡迎先看下方委託項目與須知，可直接勾選多個項目並產生需求摘要。",
+      isOpen: true,
+      openText: "開放委託中",
+      closedText: "暫停接單（可先留單）",
+      plans: [
+        { id: "p1", name: "單項設計 / 排版", priceLabel: "NT$ 1,200 起", priceNum: 1200, desc: "單張視覺、海報、社群圖卡或簡報美化。" },
+        { id: "p2", name: "文案撰寫 / 潤稿", priceLabel: "NT$ 800 起", priceNum: 800, desc: "活動介紹、商品說明、文章潤飾與結構整理。" },
+        { id: "p3", name: "多項組合 / 專案協助", priceLabel: "依需求報價", priceNum: 0, desc: "同時包含設計、整理或企劃的複合型委託。" }
+      ],
+      addons: [
+        { id: "a1", name: "急件", priceNum: 0 },
+        { id: "a2", name: "商用用途", priceNum: 500 },
+        { id: "a3", name: "原始檔", priceNum: 300 }
+      ],
+      rules: [
+        "確認需求與交期後提供正式報價，依確認順序安排排程。",
+        "修改次數與交付格式將於報價階段共同確認。",
+        "送出摘要後可複製貼到常用通訊軟體或寄信聯繫。"
+      ],
+      links: [
+        { label: "作品集 / 社群", url: "https://example.com" },
+        { label: "寄信聯繫", url: "mailto:your-email@example.com" }
+      ]
+    };
+
+    const chosenPlans = new Set();
+    const chosenAddons = new Set();
+
+    document.getElementById("siteTitle").textContent = CONFIG.title;
+    document.getElementById("siteIntro").textContent = CONFIG.intro;
+
+    const badge = document.getElementById("statusBadge");
+    badge.classList.toggle("closed", !CONFIG.isOpen);
+    document.getElementById("statusText").textContent = CONFIG.isOpen ? CONFIG.openText : CONFIG.closedText;
+
+    const plansGrid = document.getElementById("plansGrid");
+    CONFIG.plans.forEach((p) => {
+      const card = document.createElement("div");
+      card.className = "plan-card";
+      card.innerHTML = `
+        <div class="plan-top">
+          <span class="plan-name">${esc(p.name)}</span>
+          <input type="checkbox" aria-label="${esc(p.name)}" />
+        </div>
+        <div class="plan-price">${esc(p.priceLabel)}</div>
+        <p class="plan-desc">${esc(p.desc)}</p>
+      `;
+      const cb = card.querySelector("input");
+      card.addEventListener("click", (e) => {
+        if (e.target !== cb) cb.checked = !cb.checked;
+        toggleItem(chosenPlans, p.id, card, cb.checked);
+      });
+      plansGrid.appendChild(card);
+    });
+
+    const addonsWrap = document.getElementById("addonsWrap");
+    if (!CONFIG.addons.length) {
+      addonsWrap.style.display = "none";
+    } else {
+      CONFIG.addons.forEach((a) => {
+        const chip = document.createElement("label");
+        chip.className = "chip";
+        const tag = a.priceNum > 0 ? ` (+NT$ ${a.priceNum})` : "";
+        chip.innerHTML = `<input type="checkbox" /><span>${esc(a.name)}${tag}</span>`;
+        const cb = chip.querySelector("input");
+        cb.addEventListener("change", () => toggleItem(chosenAddons, a.id, chip, cb.checked));
+        addonsWrap.appendChild(chip);
+      });
+    }
+
+    const rulesList = document.getElementById("rulesList");
+    CONFIG.rules.forEach((r) => {
+      const li = document.createElement("li");
+      li.textContent = r;
+      rulesList.appendChild(li);
+    });
+
+    const socialLinks = document.getElementById("socialLinks");
+    CONFIG.links.forEach((l) => {
+      const a = document.createElement("a");
+      a.className = "link-pill";
+      a.href = l.url;
+      a.textContent = l.label;
+      if (!l.url.startsWith("mailto:")) {
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+      }
+      socialLinks.appendChild(a);
+    });
+
+    function toggleItem(set, id, el, checked) {
+      checked ? set.add(id) : set.delete(id);
+      el.classList.toggle("selected", checked);
+      document.getElementById("selectErr").style.display = "none";
+      refreshBar();
+    }
+
+    function refreshBar() {
+      const pList = CONFIG.plans.filter((p) => chosenPlans.has(p.id));
+      const aList = CONFIG.addons.filter((a) => chosenAddons.has(a.id));
+      document.getElementById("countNum").textContent = pList.length;
+      const preview = document.getElementById("pricePreview");
+      if (!pList.length) {
+        preview.textContent = "尚未選擇項目";
+        return;
+      }
+      const sum = pList.reduce((s, x) => s + x.priceNum, 0) + aList.reduce((s, x) => s + x.priceNum, 0);
+      const custom = pList.some((x) => x.priceNum === 0);
+      preview.textContent = sum > 0
+        ? `預估起價：NT$ ${sum.toLocaleString()} 起${custom ? "（含另行報價項）" : ""}`
+        : "預估費用：依所選項目另行報價";
+    }
+
+    const form = document.getElementById("reqForm");
+    const resultBox = document.getElementById("resultBox");
+    const outText = document.getElementById("outText");
+    const copyMsg = document.getElementById("copyMsg");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!chosenPlans.size) {
+        document.getElementById("selectErr").style.display = "block";
+        return;
+      }
+      const pLines = CONFIG.plans.filter((p) => chosenPlans.has(p.id)).map((p) => `・${p.name}（${p.priceLabel}）`);
+      const aNames = CONFIG.addons.filter((a) => chosenAddons.has(a.id)).map((a) => a.name);
+      const who = document.getElementById("who").value.trim();
+      const when = document.getElementById("when").value.trim() || "未填寫";
+      const money = document.getElementById("money").value.trim() || "未填寫";
+      const note = document.getElementById("note").value.trim();
+
+      outText.textContent = [
+        "【委託需求單】",
+        `聯絡人／方式：${who}`,
+        `委託項目（共 ${pLines.length} 項）：`,
+        ...pLines,
+        `附加需求：${aNames.length ? aNames.join("、") : "無"}`,
+        `期望交期：${when}`,
+        `預算範圍：${money}`,
+        `需求說明：\n${note}`
+      ].join("\n");
+
+      resultBox.classList.add("show");
+      copyMsg.textContent = "已產生委託摘要";
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(outText.textContent);
+        copyMsg.textContent = "已複製到剪貼簿！";
+      } catch {
+        copyMsg.textContent = "請手動選取上方文字複製。";
+      }
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      form.reset();
+      chosenPlans.clear();
+      chosenAddons.clear();
+      document.querySelectorAll(".plan-card, .chip").forEach((el) => {
+        el.classList.remove("selected");
+        const cb = el.querySelector("input");
+        if (cb) cb.checked = false;
+      });
+      document.getElementById("selectErr").style.display = "none";
+      resultBox.classList.remove("show");
+      refreshBar();
+    });
+
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+  </script>
+</body>
+</html>
