@@ -46,7 +46,11 @@
       padding: 20px;
     }
 
-    .hero { padding: 0; overflow: hidden; }
+    /* 頂部 Banner + 簡介 */
+    .hero {
+      padding: 0;
+      overflow: hidden;
+    }
 
     .banner {
       height: 140px;
@@ -69,11 +73,33 @@
       color: var(--accent);
     }
 
-    .status.closed { color: var(--closed-text); background: var(--closed-bg); }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-    .hero-body { padding: 18px 22px 22px; }
-    .hero-body h1 { margin: 0; font-size: 1.35rem; letter-spacing: 0.02em; }
-    .hero-body p { margin: 8px 0 0; color: var(--muted); font-size: 0.93rem; }
+    .status.closed {
+      color: var(--closed-text);
+      background: var(--closed-bg);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .hero-body {
+      padding: 18px 22px 22px;
+    }
+
+    .hero-body h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-body p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
 
     .sec-head {
       display: flex;
@@ -84,9 +110,18 @@
       margin-bottom: 12px;
     }
 
-    .sec-title { margin: 0; font-size: 1rem; font-weight: 700; }
-    .sec-hint { font-size: 0.82rem; color: var(--muted); }
+    .sec-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
 
+    .sec-hint {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* 委託項目多選卡片 */
     .plans {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -104,15 +139,49 @@
     }
 
     .plan-card:hover { border-color: var(--accent); }
-    .plan-card.selected { background: var(--accent-bg); border-color: var(--accent); }
-    .plan-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
-    .plan-name { font-weight: 700; font-size: 0.95rem; }
-    .plan-price { color: var(--accent); font-weight: 700; font-size: 0.88rem; margin: 4px 0 6px; }
-    .plan-desc { margin: 0; font-size: 0.84rem; color: var(--muted); }
 
-    input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; }
+    .plan-card.selected {
+      background: var(--accent-bg);
+      border-color: var(--accent);
+    }
 
-    .addons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .plan-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .plan-price {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin: 4px 0 6px;
+    }
+
+    .plan-desc {
+      margin: 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    input[type="checkbox"] {
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* 附加選項 */
+    .addons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
 
     .chip {
       display: inline-flex;
@@ -146,11 +215,28 @@
       font-size: 0.88rem;
     }
 
-    .err { color: #b42318; font-size: 0.84rem; margin-top: 8px; display: none; }
+    .err {
+      color: #b42318;
+      font-size: 0.84rem;
+      margin-top: 8px;
+      display: none;
+    }
 
+    /* 表單 */
     form { display: grid; gap: 12px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-    label.lbl { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    label.lbl {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
 
     input[type="text"], textarea {
       width: 100%;
@@ -164,6 +250,7 @@
     }
 
     textarea { min-height: 92px; resize: vertical; }
+
     .btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
     button {
@@ -215,9 +302,21 @@
       font-size: 0.88rem;
     }
 
-    .rules { margin: 0; padding-left: 18px; color: var(--muted); font-size: 0.88rem; }
+    .rules {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
     .rules li + li { margin-top: 6px; }
-    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
     .link-pill {
       display: inline-block;
@@ -246,6 +345,7 @@
 </head>
 <body>
   <div class="page">
+    <!-- 1. 主視覺與簡介區塊 -->
     <section class="box hero">
       <div class="banner">
         <div id="statusBadge" class="status">
@@ -259,6 +359,7 @@
       </div>
     </section>
 
+    <!-- 2. 多選委託項目與需求表單 -->
     <section class="box">
       <div class="sec-head">
         <h2 class="sec-title">委託項目（可複選）</h2>
@@ -314,6 +415,7 @@
       </div>
     </section>
 
+    <!-- 3. 委託須知與外部連結 -->
     <section class="box">
       <h2 class="sec-title" style="margin-bottom:10px;">委託須知與聯繫管道</h2>
       <ul id="rulesList" class="rules"></ul>
@@ -331,7 +433,6 @@
       isOpen: true,
       openText: "開放委託中",
       closedText: "暫停接單（可先留單）",
-
       plans: [
         { id: "p1", name: "A｜正比大頭", priceLabel: "NT$ 500 起", priceNum: 500, desc: "及肩大頭創作，可修改1次" },
         { id: "p2", name: "B｜正比塗鴉", priceLabel: "NT$ 800 起", priceNum: 800, desc: "可能多少溢色/雜線，會畫到腰，雙人金額*2，簡單色塊背景。不做修改" },
@@ -345,7 +446,6 @@
         { id: "a3", name: "不公開展示", rate: 15 },
         { id: "a4", name: "修改一次", rate: 10 }
       ],
-
       rules: [
         "確認需求與交期後提供正式報價，依確認順序安排排程。",
         "修改次數與交付格式將於報價階段共同確認。",
@@ -395,4 +495,201 @@
         const chip = document.createElement("label");
         chip.className = "chip";
         chip.dataset.addonId = a.id;
-        const rateLabel = a.rate > 0
+        const rateLabel = a.rate > 0 ? ` (+${a.rate}%)` : "";
+        chip.innerHTML = `<input type="checkbox" /><span class="addon-label">${esc(a.name)}${rateLabel}</span>`;
+        const cb = chip.querySelector("input");
+        cb.addEventListener("change", () => toggleItem(chosenAddons, a.id, chip, cb.checked));
+        addonsWrap.appendChild(chip);
+      });
+    }
+
+    const rulesList = document.getElementById("rulesList");
+    CONFIG.rules.forEach((r) => {
+      const li = document.createElement("li");
+      li.textContent = r;
+      rulesList.appendChild(li);
+    });
+
+    const socialLinks = document.getElementById("socialLinks");
+    CONFIG.links.forEach((l) => {
+      const a = document.createElement("a");
+      a.className = "link-pill";
+      a.href = l.url;
+      a.textContent = l.label;
+      if (!l.url.startsWith("mailto:")) {
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+      }
+      socialLinks.appendChild(a);
+    });
+
+    function getAddonAmount(planSum, rate) {
+      if (!rate || rate <= 0 || planSum <= 0) return 0;
+      return Math.round(planSum * (rate / 100));
+    }
+
+    function toggleItem(set, id, el, checked) {
+      checked ? set.add(id) : set.delete(id);
+      el.classList.toggle("selected", checked);
+      document.getElementById("selectErr").style.display = "none";
+      refreshBar();
+    }
+
+    function refreshBar() {
+      const pList = CONFIG.plans.filter((p) => chosenPlans.has(p.id));
+      const aList = CONFIG.addons.filter((a) => chosenAddons.has(a.id));
+      document.getElementById("countNum").textContent = pList.length;
+
+      const planSum = pList.reduce((s, x) => s + x.priceNum, 0);
+
+      CONFIG.addons.forEach((a) => {
+        const span = addonsWrap.querySelector(`[data-addon-id="${a.id}"] .addon-label`);
+        if (!span) return;
+        if (!a.rate || a.rate <= 0) {
+          span.textContent = a.name;
+        } else if (planSum > 0) {
+          const amt = getAddonAmount(planSum, a.rate);
+          span.textContent = `${a.name} (+${a.rate}% / +NT$ ${amt.toLocaleString()})`;
+        } else {
+          span.textContent = `${a.name} (+${a.rate}%)`;
+        }
+      });
+
+      const preview = document.getElementById("pricePreview");
+      if (!pList.length) {
+        preview.textContent = "尚未選擇項目";
+        return;
+      }
+
+      const addonSum = aList.reduce((s, x) => s + getAddonAmount(planSum, x.rate), 0);
+      const total = planSum + addonSum;
+      const custom = pList.some((x) => x.priceNum === 0);
+
+      preview.textContent = total > 0
+        ? `預估起價：NT$ ${total.toLocaleString()} 起${custom ? "（含另行報價項）" : ""}`
+        : "預估費用：依所選項目另行報價";
+    }
+
+    const form = document.getElementById("reqForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const resultBox = document.getElementById("resultBox");
+    const resultHeader = document.getElementById("resultHeader");
+    const outText = document.getElementById("outText");
+    const copyMsg = document.getElementById("copyMsg");
+    const mailtoFallback = document.getElementById("mailtoFallback");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!chosenPlans.size) {
+        document.getElementById("selectErr").style.display = "block";
+        return;
+      }
+
+      const pList = CONFIG.plans.filter((p) => chosenPlans.has(p.id));
+      const aList = CONFIG.addons.filter((a) => chosenAddons.has(a.id));
+      const planSum = pList.reduce((s, x) => s + x.priceNum, 0);
+      const addonSum = aList.reduce((s, x) => s + getAddonAmount(planSum, x.rate), 0);
+      const total = planSum + addonSum;
+      const custom = pList.some((x) => x.priceNum === 0);
+
+      const estimateText = total > 0
+        ? `NT$ ${total.toLocaleString()} 起${custom ? "（含另行報價項）" : ""}`
+        : "依所選項目另行報價";
+
+      const pLines = pList.map((p) => `・${p.name}（${p.priceLabel}）`);
+      const aDetails = aList.map((a) => {
+        if (!a.rate || a.rate <= 0) return a.name;
+        const amt = getAddonAmount(planSum, a.rate);
+        return planSum > 0
+          ? `${a.name}（+${a.rate}%，+NT$ ${amt.toLocaleString()}）`
+          : `${a.name}（+${a.rate}%）`;
+      });
+
+      const who = document.getElementById("who").value.trim();
+      const when = document.getElementById("when").value.trim() || "未填寫";
+      const money = document.getElementById("money").value.trim() || "未填寫";
+      const note = document.getElementById("note").value.trim();
+
+      const summary = [
+        "【委託需求單】",
+        `聯絡人／方式：${who}`,
+        `委託項目（共 ${pLines.length} 項）：`,
+        ...pLines,
+        `附加需求：${aDetails.length ? aDetails.join("、") : "無"}`,
+        `預估費用：${estimateText}`,
+        `期望交期：${when}`,
+        `預算範圍：${money}`,
+        `需求說明：\n${note}`
+      ].join("\n");
+
+      outText.textContent = summary;
+      resultBox.classList.add("show");
+      mailtoFallback.href = `mailto:${encodeURIComponent(CONFIG.receiverEmail)}?subject=${encodeURIComponent(`委託洽詢 - ${who}`)}&body=${encodeURIComponent(summary)}`;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "寄送中...";
+
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONFIG.receiverEmail)}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            _subject: `【新委託】${who}（${pLines.length} 項）`,
+            聯絡人與方式: who,
+            委託項目: pLines.join("\n"),
+            附加需求: aDetails.length ? aDetails.join("、") : "無",
+            預估費用: estimateText,
+            期望交期: when,
+            預算範圍: money,
+            需求說明: note
+          })
+        });
+
+        const data = await res.json();
+        if (res.ok && (data.success === "true" || data.success === true)) {
+          resultHeader.classList.remove("fail");
+          copyMsg.textContent = "已成功寄出至你的信箱！以下為摘要備份：";
+        } else {
+          throw new Error(data.message || "寄送失敗");
+        }
+      } catch (err) {
+        resultHeader.classList.add("fail");
+        copyMsg.textContent = "自動寄送未完成（首次使用請先完成信箱啟用驗證），可先複製下方摘要：";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "送出委託至信箱";
+      }
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(outText.textContent);
+        copyMsg.textContent = "已複製到剪貼簿！";
+      } catch {
+        copyMsg.textContent = "請手動選取上方文字複製。";
+      }
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      form.reset();
+      chosenPlans.clear();
+      chosenAddons.clear();
+      document.querySelectorAll(".plan-card, .chip").forEach((el) => {
+        el.classList.remove("selected");
+        const cb = el.querySelector("input");
+        if (cb) cb.checked = false;
+      });
+      document.getElementById("selectErr").style.display = "none";
+      resultBox.classList.remove("show");
+      refreshBar();
+    });
+
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+  </script>
+</body>
+</html>
